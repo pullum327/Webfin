@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'payment.css' %}">
+    <title>Bookability</title>
+</head>
+<script>
+    function toggleCreditCardFields() {
+        var paymentMethod = document.getElementById('payment-method').value;
+        var creditCardDetails = document.getElementById('credit-card-details');
+        if (paymentMethod === 'credit-card') {
+            creditCardDetails.style.display = 'block';
+        } else {
+            creditCardDetails.style.display = 'none';
+        }
+    }
+
+    function validateAndShowMessage() {
+        var name = document.getElementById('name').value;
+        var address = document.getElementById('address').value;
+        var paymentMethod = document.getElementById('payment-method').value;
+        var cardNumber = document.getElementById('card-number').value;
+        var cardExpiry = document.getElementById('card-expiry').value;
+        var cardCvv = document.getElementById('card-cvv').value;
+
+        if (name === '' || address === '' || paymentMethod === '') {
+            alert('Please fill in all required fields.');
+            return;
+        }
+
+        if (paymentMethod === 'credit-card' && (cardNumber === '' || cardExpiry === '' || cardCvv === '')) {
+            alert('Please enter your credit card details.');
+            return;
+        }
+
+        alert('Received your order');
+    }
+</script>
+
+<body>
+    <header>
+        <h1>Bookability</h1>
+        <nav>
+            <ul>
+                <li><a href="/home/">首頁</a></li>
+                <li><a href="/cart/">購物車</a></li>
+                <li><a href="/wishl/">願望清單</a></li>
+                <li><a href="/manage/">管理訂單</a></li>
+                <li><a href="/personal/">個人資料</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="centered-container">
+        {% for item in cart_items %}
+        <li>{{ item.product.name }} - ${{ item.product.price }} x {{ item.quantity }}</li>
+        {% endfor %}
+        <p>Total Price: ${{ total_price }}</p>
+        <form action="/submit-payment" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address" required><br>
+
+            <label for="payment-method">Payment Method:</label><br>
+            <select id="payment-method" name="payment-method" required onchange="toggleCreditCardFields()">
+                <option value="cash">Cash</option>
+                <option value="credit-card">Credit Card</option>
+                <!-- Add other payment methods as needed -->
+            </select><br><br>
+            <div id="credit-card-details" style="display:none;">
+                <label for="card-number">Credit Card Number:</label><br>
+                <input type="text" id="card-number" name="card-number"><br>
+
+                <label for="card-expiry">Expiry Date:</label><br>
+                <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY"><br>
+
+                <label for="card-cvv">CVV:</label><br>
+                <input type="text" id="card-cvv" name="card-cvv"><br>
+            </div>
+            <button type="button" onclick="validateAndShowMessage()">Submit</button>
+    </div>
+    </form>
+    <footer>
+        <p>版權所有 &copy; 2023 Bookability 網上商店 <a href="#" class="contact">聯繫我們</a></p>
+    </footer>
+
+</html>

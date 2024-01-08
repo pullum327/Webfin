@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+
+  header h1 {
+    color: #fff;
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin-right: 10px;
+  }
+
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin-bottom: 20px;
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+
+  #checkout-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  #checkout-button:hover {
+    background-color: #555;
+  }
+
+  #product-image {
+    max-width: 150px;
+    height: auto;
+  }
+
+  img {
+    max-width: 100px;
+    min-width: 100px;
+    height: auto;
+  }
+  .payment-link-container {
+    position: fixed;  /* Fixed position */
+    right: 0;         /* Align to the right */
+    top: 50%;         /* Positioned halfway down the screen */
+    transform: translateY(-50%); /* Adjust to center vertically */
+    background-color: #f2f2f2;   /* Light grey background */
+    padding: 10px;    /* Some padding around the link */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+    text-align: center; /* Center the text */
+}
+
+.payment-link-container a {
+    text-decoration: none;  /* Remove underline from the link */
+    color: #007bff;         /* Link color */
+    font-weight: bold;      /* Make the text bold */
+}
+.flex-container {
+  display: flex;       /* Enable flexbox */
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Align items vertically in the center */
+  /* Add any other styling as needed */
+}
+
+.payment-link-container a {
+  text-decoration: none;  /* Remove underline from the link */
+  color: #007bff;         /* Link color, adjust as needed */
+  /* Add any other link styling as needed */
+}

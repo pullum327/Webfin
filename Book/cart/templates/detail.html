@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
+    <title>Bookability</title>
+</head>
+
+<body>
+    <header>
+        <h1>Bookability</h1>
+        <nav>
+            <ul>
+                <li><a href="/home/">首頁</a></li>
+                <li><a href="/cart/">購物車</a></li>
+                <li><a href="/wishl/">願望清單</a></li>
+                <li><a href="/manage/">管理訂單</a></li>
+                <li><a href="/personal/">個人資料</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="book-details">
+        <div id="book-image">
+            <img src="{{ book.image.url }}" alt="{{ book.name }}">
+            <h1>{{ book.name }}</h1>
+        </div>
+        <div id="book-info">
+            <p>Author: {{ book.author }}</p>
+            <p>Description: {{ book.description }}</p>
+            <p>Price:$ {{ book.price }}</p>
+            <div id="button-container">
+                <a href="{% url 'cart:payment' book.id %}" class="button buy-now">Buy Now</a>
+                <a href="{% url 'cart:add_to_cart' book.id %}" class="button add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>版權所有 &copy; 2023 Bookability 網上商店 <a href="#" class="contact">聯繫我們</a></p>
+    </footer>
+
+</body>

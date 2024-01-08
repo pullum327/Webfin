@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'manage.css' %}">
+    <title>管理訂單</title>
+</head>
+<body>
+    <header>
+        <h1>Bookability</h1>
+        <nav>
+            <ul>
+                <li><a href="/home/">首頁</a></li>
+                <li><a href="/cart/">購物車</a></li>
+                <li><a href="/wishl/">願望清單</a></li>
+                <li><a href="/manage/">管理訂單</a></li>
+                <li><a href="/personal/">個人資料</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>管理訂單</h1>
+
+    <table id="order-table">
+        <thead>
+            <tr>
+                <th>訂單編號</th>
+                <th>圖片</th>
+                <th>書名</th>
+                <th>狀態</th>
+                <th>價格</th>
+                <th>行程</th>
+                <th>付款方式</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- order items will be dynamically generated here -->
+        </tbody>
+    </table>
+</body>
+</html>

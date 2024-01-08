@@ -1,0 +1,75 @@
+<!-- cart/cart.html -->
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+    <title>Shopping Cart</title>
+</head>
+
+<body>
+    <header>
+        <h1>Bookability</h1>
+        <nav>
+            <ul>
+                <li><a href="/home/">首頁</a></li>
+                <li><a href="/cart/">購物車</a></li>
+                <li><a href="/wishl/">願望清單</a></li>
+                <li><a href="/manage/">管理訂單</a></li>
+                <li><a href="/personal/">個人資料</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>購物車</h1>
+
+    <table id="cart-table">
+        <thead>
+            <tr>
+                <th>勾選</th>
+                <th>圖片</th>
+                <th>書名</th>
+                <th>價格</th>
+                <th>數量</th>
+                <th>移除</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>
+                    <input type="checkbox" name="item_checkbox" value="{{ item.id }}">
+                </td>
+                <td>
+                    <img src="{{ item.product.image.url }}" alt="{{ product.name }}">
+                </td>
+                <td>{{ item.product.name }}</td>
+                <td>${{ item.product.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                    <a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">Your cart is empty.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <p>Total Price: ${{ total_price }}</p>
+    
+        <div class="payment-link-container">
+            <a href="/payment/">Payment</a>
+        </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'wishl.css' %}">
+    <title>Shopping wish</title>
+</head>
+<body>
+    <header>
+        <h1>Bookability</h1>
+        <nav>
+            <ul>
+                <li><a href="/home/">首頁</a></li>
+                <li><a href="/cart/">購物車</a></li>
+                <li><a href="/wishl/">願望清單</a></li>
+                <li><a href="/manage/">管理訂單</a></li>
+                <li><a href="/personal/">個人資料</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>願望清單</h1>
+
+    <table id="wish-table">
+        <thead>
+            <tr>
+                <th>勾選</th>
+                <th>圖片</th>
+                <th>書名</th>
+                <th>價格</th>
+                <th>數量</th>
+                <th>移除</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- wish items will be dynamically generated here -->
+        </tbody>
+    </table>
+
+    <button id="add-to-cart-button">加入購物車</button>
+</body>
+
+</html>

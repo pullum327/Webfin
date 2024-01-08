@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'menu.css' %}">
+    <title>Bookability</title>
+</head>
+
+<body>
+    <header>
+        <h1>Bookability</h1>
+        <nav>
+            <ul>
+                <li><a href="/home/">首頁</a></li>
+                <li><a href="/cart/">購物車</a></li>
+                <li><a href="/wishl/">願望清單</a></li>
+                <li><a href="/manage/">管理訂單</a></li>
+                <li><a href="/personal/">個人資料</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="search-filter">
+        <input type="text" id="search-input" placeholder="搜尋產品...">
+        <select id="filter-select">
+            <option value="all">所有</option>
+        </select>
+        <button id="filter-button">過濾</button>
+    </section>
+    <section class="products-container">
+        {% for product in products %}
+        <div class="product">
+            <!-- Link around the image -->
+            <a href="details/{{ product.id }}"><img src="{{ product.image.url }}" alt="{{ product.name }}"></a>
+
+            <h1>{{ product.name }}</h1>
+            <p>Price: ${{ product.price }}</p>
+            <a href="{% url 'cart:payment' product.id %}" class="buy-now-button">Buy Now</a>
+            <a href="{% url 'cart:add_to_cart' product.id %}" class="add-to-cart-button">Add to Cart</a>
+        </div>
+        {% endfor %}
+    </section>
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>版權所有 &copy; 2023 Bookability 網上商店 <a href="#" class="contact">聯繫我們</a></p>
+    </footer>
+</body>
+
+<script>
+    document.getElementById('filter-button').addEventListener('click', function() {
+        var searchQuery = document.getElementById('search-input').value;
+        window.location.href = '/products/?search=' + encodeURIComponent(searchQuery);
+    });
+</script>
+</html>
